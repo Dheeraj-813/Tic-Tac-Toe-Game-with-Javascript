@@ -70,19 +70,46 @@ const showWinnerMsg = (winner) => {
     disabledBoxes();
 };
 
+// Draw message display...
+const showDrawMsg = () => {
+    msg.innerText = `Game is draw....!`
+    msgContainter.classList.remove("hide");
+    disabledBoxes()
+}
+
+
 // Working of checkWinner() function...
 const checkWinner = () => {
-    for(let pattern of winningPatterns){
-        let pos1val = boxes[pattern[0]].innerText;// check individual position inside 2D array with its value.
-        let pos2val = boxes[pattern[1]].innerText;// check individual position inside 2D array with its value.
-        let pos3val = boxes[pattern[2]].innerText;// check individual position inside 2D array with its value.
-        if(pos1val != "" && pos2val != "" && pos3val != ""){ // To check for blank boxes.
-            if(pos1val === pos2val && pos2val === pos3val){// To check all boxes should have same value.
-                console.log(`${pos1val} is the winner of game.....!`);
-                showWinnerMsg(pos1val);
+    const checkWinner = () => {
+        let winnerFound = false;
+    
+        for (let pattern of winningPatterns) {
+            let pos1val = boxes[pattern[0]].innerText;
+            let pos2val = boxes[pattern[1]].innerText;
+            let pos3val = boxes[pattern[2]].innerText;
+    
+            if (pos1val != "" && pos2val != "" && pos3val != "") {
+                if (pos1val === pos2val && pos2val === pos3val) {
+                    showWinnerMsg(pos1val);
+                    winnerFound = true;
+                    return;
+                }
             }
         }
-    }
+    
+        // Only check for draw if no winner is found
+            let allBoxFilled = true;
+            for (let box of boxes) {
+                if (box.innerText === "") {
+                    allBoxFilled = false;
+                    break;
+                }
+            }
+            if (!winnerFound && allBoxFilled) {
+                showDrawMsg();
+            }
+        
+    };
 };
 
 // reset game function calling....
