@@ -37,9 +37,13 @@ boxes.forEach((box) => {
         // for turn of O
         if(turnO){
             box.innerText = "O";
+            // change color of O
+            box.style.color = "green";
             turnO = false; // Next time turn O will not allowed.
         } else {
             box.innerText = "X";
+            // change color of X
+            box.style.color = "red";
             turnO = true; // Next time turn O will allowed.
         }
         box.disabled = true;
