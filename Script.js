@@ -80,7 +80,7 @@ const showDrawMsg = () => {
 
 // Working of checkWinner() function...
 const checkWinner = () => {
-    const checkWinner = () => {
+    
         let winnerFound = false;
     
         for (let pattern of winningPatterns) {
@@ -110,7 +110,7 @@ const checkWinner = () => {
             }
         
     };
-};
+
 
 // reset game function calling....
 newBtn.addEventListener("click", resetGame);
